@@ -1,0 +1,157 @@
+##### add the part below in custom.css #####
+------------------------------------------------------------------------------
+
+input[type=range] {
+height: 34px;
+-webkit-appearance: none;
+margin: 10px 0;
+width: 100%;
+}
+input[type=range]:focus {
+outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+width: 100%;
+height: 5px;
+cursor: pointer;
+animate: 0.2s;
+box-shadow: 1px 1px 1px #002200;
+background: #ff0000;
+border-radius: 3px !important;
+border: 1px solid #ff0000;
+}
+input[type=range]::-webkit-slider-thumb {
+border: 2px solid #ffffff;
+height: 23px;
+width: 23px;
+border-radius: 23px;
+background: #9d9d9d;
+cursor: pointer;
+-webkit-appearance: none;
+margin-top: -9px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+background: #205928;
+}
+input[type=range]::-moz-range-track {
+width: 100%;
+height: 12px;
+cursor: pointer;
+animate: 0.2s;
+box-shadow: 1px 1px 1px #002200;
+background: #205928;
+border-radius: 1px;
+border: 1px solid #18D501;
+}
+input[type=range]::-moz-range-thumb {
+box-shadow: 3px 3px 3px #00AA00;
+border: 2px solid #83E584;
+height: 23px;
+width: 23px;
+border-radius: 23px;
+background: #439643;
+cursor: pointer;
+}
+input[type=range]::-ms-track {
+width: 100%;
+height: 12px;
+cursor: pointer;
+animate: 0.2s;
+background: transparent;
+border-color: transparent;
+color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+background: #205928;
+border: 1px solid #18D501;
+border-radius: 2px;
+box-shadow: 1px 1px 1px #002200;
+}
+input[type=range]::-ms-fill-upper {
+background: #205928;
+border: 1px solid #18D501;
+border-radius: 2px;
+box-shadow: 1px 1px 1px #002200;
+}
+input[type=range]::-ms-thumb {
+margin-top: 1px;
+box-shadow: 3px 3px 3px #00AA00;
+border: 2px solid #83E584;
+height: 23px;
+width: 23px;
+border-radius: 23px;
+background: #439643;
+cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+background: #205928;
+}
+input[type=range]:focus::-ms-fill-upper {
+background: #205928;
+}
+
+
+
+
+
+
+
+
+##### add the part below in render partial which is related to price filter #####
+------------------------------------------------------------------------------
+
+{% load humanize %}
+
+<div class="widget-filters__item">
+    <div class="filter filter--opened" data-collapse-item>
+        <button type="button" class="filter__title" data-collapse-trigger>قیمت
+            <svg class="filter__arrow" width="12px" height="7px">
+                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+            </svg>
+        </button>
+        <div class="filter__body" data-collapse-content>
+            <div class="filter__container">
+                <div class="filter-price" data-min="5000" data-max="150000" data-from="25000" data-to="110000">
+                    <div class="filter-price__slider"></div>
+                    <div class="filter-price__title">
+                        <span class="filter-price__min-value" id='cur_price'>{{res_aggre.avg_price |intcomma }}</span>
+                        تومان
+                        <br>
+
+                        <input type="range" name='price' min={{res_aggre.min_price}} max={{res_aggre.max_price}}
+                            value={{res_aggre.avg_price}} oninput="showVal(this.value)" onchange="showVal(this.value)"
+                            style='width:200px;'><br>
+                        <span>{{res_aggre.min_price |intcomma }}</span> تومان
+                        &nbsp;&nbsp;
+                        &nbsp;
+                        <span>{{res_aggre.max_price |intcomma }} تومان</span>
+
+                        <span class="filter-price__max-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+##### add the part below in myscript.js file in static folder ***(you must create myscript.js file)*** #####
+------------------------------------------------------------------------------
+function showVal(x){
+x=x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+document.getElementById('cur_price').innerText=x;
+}
+
+
+
+
+
+
+##### add the code below in head of main_template.html #####
+------------------------------------------------------------------------------
+<script src='{% static "js/myscript.js" %}'></script>

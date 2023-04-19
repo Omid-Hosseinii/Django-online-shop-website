@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    لیست مقایسه کالا ها 
+{% endblock title %}
+
+{% load render_partial %}
+
+{% block content %}
+    
+
+        
+    <div id="compare_list">
+        {% render_partial 'products:compare_table' %}
+    </div>
+
+        
+
+{% endblock content %}
+    

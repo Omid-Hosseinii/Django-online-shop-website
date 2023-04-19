@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    صفحه ی اصلی
+{% endblock title %}
+
+{% load render_partial %}
+{% block content %}
+
+{% if products %}
+    <div>
+        <div class="container">
+            <h2 class="mb-5 bt-5 d-flex justify-content-center">نتیجه جست جو</h2>
+            <div class="product-flexbox mb-5 mt-2 mr-2">
+                {% for product in products %}
+                    {% include 'partials/product/product_box.html' with type=1 %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% else %}
+    <h2 class="mb-5 bt-5 d-flex justify-content-center">محصولی با این عنوان یافت نشد</h2>
+{% endif %}
+{% endblock content %}
+    
+
+
+

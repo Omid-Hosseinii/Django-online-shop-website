@@ -1,0 +1,90 @@
+{% load render_partial %}
+<div class="product-tabs__pane" id="tab-reviews">
+    <div class="reviews-view">
+        <div class="reviews-view__list">
+            <h3 class="reviews-view__header">دیدگاه های مشتریان</h3>
+            <div class="reviews-list">
+                <ol class="reviews-list__content">
+                    
+                    {% for comment in product.comments_product.all %}
+                        {% if comment.is_active %}
+                            {% if comment.comments_parent == None %}
+                                <li class="reviews-list__item">
+                                    <div class="review">
+                                        <div class="review__avatar">
+                                            <img src="{{media_url}}images/avatars/avatar-1.jpg" alt=""></div>
+                                        <div class="review__content">
+                                            <div class="review__author">{{comment.commenting_user}}</div>
+
+                                            <div class="review__text">{{comment.comment_text}}</div>
+                                            <div class="review__date">{{comment.register_date}}</div> 
+                                        </div>
+                                    </div>
+                                    <div>
+                                       
+                                        {% if user.is_authenticated %}
+                                            <div>
+                                                <a  class="btn btn-info" id="btn_{{comment.id}}" onclick="showcreatecommentForm( {{product.id}} , {{comment.id}} ,'{{product.slug}}' )">
+                                                    پاسخ
+                                                </a>
+                                            
+                                            </div >
+                                            <div id="comment_form_{{comment.id}}">
+
+                                            </div>
+                                        {% endif %}
+                                            
+                                    </div>
+                                </li>
+
+                            
+                                {% for comment_child in comment.comment_child.all %}
+                                    {% if comment_child.is_active %}
+                                        <li class="reviews-list__item" style="background-color:bisque; width:95%; margin:10px 5%;">
+                                            <div class="review">
+                                                <div class="review__avatar"><img src="{{media_url}}images/avatars/avatar-1.jpg" alt=""></div>
+                                                <div class="review__content">
+                                                    <div class="review__author">{{comment_child.commenting_user}}</div>
+
+                                                    <div class="review__text">{{comment_child.comment_text}}</div>
+                                                    <div class="review__date">{{comment_child.register_date}}</div> 
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}    
+                            
+                            
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                        
+
+                </ol>
+
+            </div>
+        </div>
+
+
+        {% if user.is_authenticated %}
+            <h3 class="reviews-view__header">دیدگاه خود را بنویسید</h3>
+            <div class="row">
+                <div class="col-12 col-lg-9 col-xl-8">
+                    {% render_partial 'csws:create_comment' slug=product.slug %}
+                </div>
+            </div>
+        {% else %}
+            <h5 class="mt-3">برای ثبت نظر
+                <a href="{% url 'accounts:login' %}?next=/product/{{product.slug}}/" class="text-danger">ورود</a>
+                یا
+                <a href="{% url 'accounts:register' %}?next=/product/{{product.slug}}/" class="text-danger">ثبت نام</a>
+                انجام دهید.
+            </h5>    
+
+
+        {% endif %}    
+
+
+    </div>
+</div>

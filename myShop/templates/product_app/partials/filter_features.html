@@ -1,0 +1,60 @@
+<div class="widget-filters__item">
+    <div class="filter filter--opened" data-collapse-item>
+        <button type="button" class="filter__title" data-collapse-trigger>ویژگی ها
+            <svg class="filter__arrow" width="12px" height="7px">
+                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+            </svg>
+        </button>
+        <div class="filter__body" data-collapse-content>
+            <div id="accordion">
+                {% for key,value in feature_dict.items %}
+                    {% if value %}
+                        <div class="card text-left">
+                            <div class="card-header p-0 mr-0" id="headingOne">
+                            <h5 class="mb-0 position-relative" >
+                                <div class="row position-relative">
+                                    <div class="col-10">
+                                        <a class="btn text-left stretched-link" data-toggle="collapse" data-target="#collapse{{key.id}}" aria-expanded="true" aria-controls="collapseOne">
+                                            {{key}}
+                                        </a>
+                                    </div>
+                                    <div class="col-2 mt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 512 512"><title>ionicons-v5-a</title><polyline points="112 184 256 328 400 184" style="fill:none;stroke:#000;stroke-linecap:square;stroke-miterlimit:10;stroke-width:48px"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                            </h5>
+                            </div>
+                            <div id="collapse{{key.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body p-2 ml-2">
+                                {% for item in value %}                                                               
+                                    <label class="filter-list__item">
+                                        <span class="filter-list__input input-check">
+                                            <span class="input-check__body">
+                                                <input id="item2_{{item.id}}" name='feature' value="{{item.id}}" type="checkbox">
+                                                
+
+                                        </span>
+                                        </span>
+                                        <span class="filter-list__title">
+                                            {{item}}
+                                        </span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div> 
+    </div>
+</div>
+
+
+
+
+
+
+    

@@ -1,0 +1,43 @@
+
+    
+
+
+{% if products %}
+        <div class="container mb-5 mt-5">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">ویژگی کالا ها</th>
+                    {% for product in products %}
+                        <th scope="col">
+                            
+                            <i onclick="DeleteFromCompareList({{product.id}})" class="fa fa-window-close" aria-hidden="true" style="color:red;"></i>
+                            <span>{{product.product_name}}</span>
+                        </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                    {% for feature in features %}
+                        <tr>
+                            <th scope="row">{{feature}}</th>
+                            {% for product in products %}
+                                <td>
+                                    {% for item in product.product_features.all %}
+                                        {% if item.feature == feature %}
+                                            <span>{{item.filter_value.value_title}}</span>
+                                        {% endif %}
+                                    {% endfor %}    
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% else %}
+        <div class="container d-flex justify-content-center">
+            <h3 class="text-info">کالایی برای مقایسه وجود ندارد</h3>
+        </div>
+{% endif %} 
+

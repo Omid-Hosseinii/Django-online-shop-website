@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+
+
+{% block title %}
+    صفحه ی سبد خرید
+{% endblock title %}
+
+{% load humanize %}
+{% load render_partial %}
+
+{% block content %}
+    
+    <div id="shop_cart_list">
+        {% render_partial 'orders:show_shop_cart' %}
+    </div>
+
+{% endblock content %}
+    

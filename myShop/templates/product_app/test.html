@@ -1,0 +1,64 @@
+<div class="product-flexbox">
+            
+    {% for product in products %}
+
+    <div class="product-card">
+        <div class="product-card__image">
+            <a href="product.html">
+
+                <img src="{{media_url}}/images/products/p1.jpg" alt="">
+            </a>
+        </div>
+        <div class="product-card__info">
+            <div class="product-card__name">
+                <a href="product.html">
+                    کالای شماره 1
+                </a>
+            </div>
+        </div>
+        <div class="product-card__actions">
+            <div class="product-card__prices">200,000 تومان</div>
+            <div class="product-card__buttons">
+                <button class="btn btn-primary product-card__addtocart"
+                    type="button">
+                    افزودن به سبد
+                </button>
+                <button
+                    class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                    type="button">
+                    <i class="fa fa-heart"></i>
+                    <span
+                        class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                </button>
+                <button
+                    class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
+                    type="button">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span
+                        class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+        
+    {% endfor %}
+
+</div>
+
+<!-- ____________________________________________________________________________________________________ -->
+
+
+<!-- write in style.css file -->
+
+
+<!-- .product-flexbox{
+	display:flex !important;
+	flex-direction:row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.product-flexbox > .product-card {
+	width:200px !important;
+	margin-left:12px;
+} -->

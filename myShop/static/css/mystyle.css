@@ -1,0 +1,33 @@
+.accordion__features{
+    padding: 0;
+}
+
+
+
+#filter_state{
+    display: none;
+    border: 1px solid #ccc;
+    padding: 0px 10px;
+    margin-bottom: 27px;
+    border-radius:3px;
+    color: rgb(12, 47, 244);
+}
+
+.btn_filter{
+    color: rgb(12, 47, 244) !important;
+    background-color:#fff;
+    border: 1px solid #ccc;
+    border-radius:3px;
+}
+.btn_filter:hover{
+    background-color: #fff;
+}
+
+
+.scoring_checked{
+    color:rgb(255, 225, 0);
+}
+
+.scoring_star_pointer{
+    cursor:pointer;
+}

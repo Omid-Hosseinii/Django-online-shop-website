@@ -1,0 +1,31 @@
+{% extends 'main_user_panel.html' %}
+
+
+
+{% block title %}
+    صفحه ی اصلی
+{% endblock title %}
+    
+
+{% load render_partial %}
+
+{% block content_user_panel %}
+    
+<div class="col-12 col-lg-9 mt-4 mt-lg-0">
+    <div class="container" style="border:1px solid #00000019;">
+        
+
+        <form action="" method="post" class="mt-2 mb-2" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <img src="{{media_url}}{{image}}" alt="" style="width: 100px; height: 100px;">
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-info" value=" ">ثبت ویرایش</button>
+                <a href="" class="btn btn-danger">انصراف</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content_user_panel %}
+    
